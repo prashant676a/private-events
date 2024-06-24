@@ -1,0 +1,6 @@
+<h1><%= @event.name %></h1>
+
+<p><%= @event.description %></p>
+<p>Date: <%= @event.date.strftime("%B %d, %Y at %I:%M %p") %></p>
+<p>Location: <%= @event.location %></p>
+<p>Created by: <%= link_to @event.creator.email, user_path(@event.creator) %></p>
