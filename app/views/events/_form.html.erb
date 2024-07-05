@@ -1,0 +1,14 @@
+<%= form_with model: event  do |f| %>
+  <%= f.label :date %>
+  <%= f.date_field :date %> <br><br>
+
+  <%= f.label :title %>
+  <%= f.text_field :title %> <br><br>
+    
+    <!--
+  <%= f.label :user_id, "User Email"%>
+  <%= f.collection_select :user_id, User.all, :id, :email, include_blank: true %> <br><br>
+     user_id will be available in params after submit -->
+
+  <%= f.submit %>
+<% end %>

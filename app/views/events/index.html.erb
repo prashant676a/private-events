@@ -1,0 +1,51 @@
+<h1>All Events</h1>
+<hr>
+
+
+<h3>Past events</h3>
+<% @past_events.each do |event|%>
+    
+    <% if current_user == event.creator %>
+        <%= event.title%> <br>
+        <%= "The event is organized by #{ event.creator.email} " %> <br>
+        <%= event.date.strftime('%b %d, %Y') %>  <br>
+        <%= link_to 'View', event_path(event.id) %>
+        <%= button_to 'Delete', event_path(event.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <hr>
+    <% end %>
+
+<% end %>
+
+<h3>Future events</h3>
+<% @future_events.each do |event|%>    
+    <% if current_user == event.creator %>
+        <%= event.title%> <br>
+        <%= "The event is organized by #{ event.creator.email} " %> <br>
+        <%= event.date.strftime('%b %d, %Y') %>  <br>
+        <%= link_to 'View', event_path(event.id) %>
+        <%= button_to 'Delete', event_path(event.id), method: :delete, data: {confirm: 'Are you sure?'} %>
+    <hr>
+    <% end %>
+<% end %>
+
+<% if user_signed_in?%>
+    <%= link_to "Create Event", new_event_path %> <br>
+   <%= button_to 'Logout', destroy_user_session_path, method: :delete %> 
+<% else %> 
+    <h3>Past Events</h3>
+    <% @past_events.each do |event|%> 
+        <%= event.title%> <br>
+        <%= "The event is organized by #{ event.creator.email} " %> <br>
+        <%= event.date.strftime('%b %d, %Y') %>  <br>
+        <hr>
+    <% end %>
+
+    <h3>Future Events</h3>
+    <% @future_events.each do |event|%> 
+        <%= event.title%> <br>
+        <%= "The event is organized by #{ event.creator.email} " %> <br>
+        <%= event.date.strftime('%b %d, %Y') %>  <br>
+        <hr>
+    <% end %>
+    <%= link_to 'login', new_user_session_path %>
+<% end %>

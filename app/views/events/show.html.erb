@@ -1,0 +1,19 @@
+<h1>Event details</h1>
+
+
+<div>Date: <%= @event.date.strftime('%b %d,%Y')%> </div>
+<div>Title: <%= @event.title %></div>
+<div>Creator Email: <%= @event.creator.email %></div>
+<br><hr>
+
+<%= link_to 'Edit', edit_event_path(@event.id) %>
+<%= button_to 'Back to Events', events_path, method: :get %>
+
+<hr>
+
+<% if @event.attendees %>
+    <h3>Attendees: </h3>
+    <% @event.attendees.each do |user| %>
+        <%= user.email %> <br>
+    <% end %>
+<% end %>
