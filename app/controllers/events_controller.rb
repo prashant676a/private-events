@@ -26,7 +26,7 @@ class EventsController < ApplicationController
   end
 
   def edit
-    debugger
+    # debugger
     @event = Event.find params[:id]
   end
 
